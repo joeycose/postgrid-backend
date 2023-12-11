@@ -1,2 +1,16 @@
-#
+# Environment secrets
 .env
+
+# Node modules
+/node_modules
+
+# Build output
+/build
+
+# Logs
+*.log
+npm-debug.log*
+
+# Others
+.DS_Store
+*.swp

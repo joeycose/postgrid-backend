@@ -1,9 +1,10 @@
 // src/index.ts
 
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { PostGrid } from 'postgrid-node-client';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { PostGrid } from "postgrid-node-client";
+import { LetterApi } from "postgrid-node-client/build/letter";
 
 // Load environment variables
 dotenv.config();
@@ -22,21 +23,28 @@ const postGridClient = new PostGrid({
 });
 
 // Root endpoint
-app.get('/', (req, res) => {
-  res.send('PostGrid Backend is running.');
+app.get("/", (req, res) => {
+  res.send("PostGrid Backend is running.");
 });
 
 // Route for Retrieving letter
-app.get('/retrieve-letter', async (req, res) => {
-    // Get letter by calling API with correct parameters
-})
+app.get("/retrieve-letter/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const response = await postGridClient.letter.get(id);
+    res.json({ success: true, letter: response });
+  } catch (error) {
+    console.error("Error creating letter via PostGrid:", error);
+    res.status(500).json({ success: false, message: "error.message" });
+  }
+});
 
 // Route to create a letter
-app.post('/create-letter', async (req, res) => {
+app.post("/create-letter", async (req, res) => {
   try {
     const { description, to, from, pdf } = req.body;
 
-    // Call the PostGrid API to create a letter 
+    // Call the PostGrid API to create a letter
     const response = await postGridClient.letter.create({
       description: description,
       pdf: pdf, // PDF should be a URL or Base64 string according to PostGrid's API spec
@@ -46,7 +54,7 @@ app.post('/create-letter', async (req, res) => {
 
     res.json({ success: true, letter: response });
   } catch (error) {
-    console.error('Error creating letter via PostGrid:', error);
+    console.error("Error creating letter via PostGrid:", error);
     res.status(500).json({ success: false, message: "error.message" });
   }
 });
