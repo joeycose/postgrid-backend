@@ -1,6 +1,7 @@
 // src/index.ts
 
-import express from "express";
+import express, { response } from "express";
+import { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { PostGrid } from "postgrid-node-client";
@@ -35,7 +36,18 @@ app.get("/retrieve-letter/:id", async (req, res) => {
     res.json({ success: true, letter: response });
   } catch (error) {
     console.error("Error creating letter via PostGrid:", error);
-    res.status(500).json({ success: false, message: "error.message" });
+    res.status(500).json({ success: false, message: error });
+  }
+});
+
+// Route for Getting a list of Letters
+app.get("/list-letters", async (req: Request, res: Response) => {
+  try {
+    const doc = await postGridClient.letter.list();
+    res.json({ success: true, letter: doc });
+  } catch (error) {
+    console.error("Error creating letter via PostGrid:", error);
+    res.status(500).json({ success: false, message: error });
   }
 });
 
@@ -55,7 +67,7 @@ app.post("/create-letter", async (req, res) => {
     res.json({ success: true, letter: response });
   } catch (error) {
     console.error("Error creating letter via PostGrid:", error);
-    res.status(500).json({ success: false, message: "error.message" });
+    res.status(500).json({ success: false, message: error });
   }
 });
 
