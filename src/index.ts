@@ -1,7 +1,6 @@
 // src/index.ts
 
-import express, { response } from "express";
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { PostGrid } from "postgrid-node-client";
@@ -29,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 // Route for Retrieving letter
-app.get("/retrieve-letter/:id", async (req, res) => {
+app.get("/retrieve-letter/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const response = await postGridClient.letter.get(id);
@@ -52,7 +51,7 @@ app.get("/list-letters", async (req: Request, res: Response) => {
 });
 
 // Route to create a letter
-app.post("/create-letter", async (req, res) => {
+app.post("/create-letter", async (req: Request, res: Response) => {
   try {
     const { description, to, from, pdf } = req.body;
 
