@@ -27,13 +27,13 @@ npm run dev
 ```
 
 ## Libraries:
-Express.js - Fast, unopinionated, minimalist web framework for Node.js.
-CORS - Node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
-dotenv - Module that loads environment variables from a .env file into process.env.
-PostGrid Node Client - The official PostGrid Node.js client library for interacting with the PostGrid Print & Mail API.
-TypeScript - A superset of JavaScript that compiles to clean JavaScript output.
-nodemon - A tool that helps develop Node.js based applications by automatically restarting the node application when file changes are detected.
-ts-node - TypeScript execution engine and REPL for Node.js.
+- Express.js - Fast, unopinionated, minimalist web framework for Node.js.
+- CORS - Node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+- dotenv - Module that loads environment variables from a .env file into process.env.
+- PostGrid Node Client - The official PostGrid Node.js client library for interacting with the PostGrid Print & Mail API.
+- TypeScript - A superset of JavaScript that compiles to clean JavaScript output.
+- nodemon - A tool that helps develop Node.js based applications by automatically restarting the node application when file changes are detected.
+- ts-node - TypeScript execution engine and REPL for Node.js.
 
 
 ### Prerequisites
