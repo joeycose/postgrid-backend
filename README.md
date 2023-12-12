@@ -43,6 +43,6 @@ npm run dev
 
 ### Installation
 
-1. Clone the repository:
+Clone the repository:
 ```sh
 git clone https://github.com/your-username/postgrid-backend.git
